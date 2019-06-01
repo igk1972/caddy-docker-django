@@ -28,7 +28,7 @@ services:
     container_name: ingress
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - caddy_certs:/caddy
+      - caddy_certs:/var/caddy
     ports:
       # - 443:443
       # - 80:80
