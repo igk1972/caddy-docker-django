@@ -29,17 +29,9 @@ RUN apk add ca-certificates wget tar \
 
 CMD ["caddy", "-log", "stdout", "-agree=true"]
 
-# ENTRYPOINT ["/entrypoint"]
-
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements/production.txt /requirements_production.txt
 RUN pip install --no-cache-dir -r /requirements_production.txt
-
-# COPY ./docker/entrypoint /entrypoint
-# RUN sed -i 's/\r//' /entrypoint && chmod +x /entrypoint && chown django /entrypoint
-
-# COPY ./docker/start /start
-# RUN sed -i 's/\r//' /start && chmod +x /start && chown django /start
 
 COPY ["./app", "./Caddyfile", "/app/"]
 
