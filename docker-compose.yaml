@@ -16,7 +16,7 @@ services:
     #   - redis
     #   - postgres
     labels:
-      caddy.address: "admin.igk.ru"
+      caddy.address: "some.domain.tld"
       caddy.targetport: "2015"
       # caddy.tls: "some@domain.tld"
       caddy.tls: "off"
