@@ -1,0 +1,35 @@
+version: '3'
+
+
+volumes:
+  caddy_certs: {}
+
+
+services:
+
+  application:
+    build:
+      context: ./caddy-django
+    image: some/application
+    container_name: application
+    # depends_on:
+    #   - redis
+    #   - postgres
+    labels:
+      caddy.address: "admin.igk.ru"
+      caddy.targetport: "2015"
+      # caddy.tls: "some@domain.tld"
+      caddy.tls: "off"
+
+  ingress:
+    build:
+      context: ./caddy-docker
+    image: some/ingress
+    container_name: ingress
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - caddy_certs:/caddy
+    ports:
+      # - 443:443
+      # - 80:80
+      - 8080:2015
